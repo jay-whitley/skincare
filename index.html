@@ -4,314 +4,127 @@
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <meta name='theme-color' content='#00796B'>
-<meta name='description' content='Weekly skincare routine tracker'>
-<meta name='apple-mobile-web-app-capable' content='yes'>
-<meta name='apple-mobile-web-app-status-bar-style' content='black-translucent'>
-<meta name='apple-mobile-web-app-title' content='Skincare'>
-<link rel='manifest' href='#' id='manifest-placeholder'>
-<link rel='icon' type='image/svg+xml' href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192'%3E%3Crect width='192' height='192' fill='%2300796B'/%3E%3Ctext x='50%25' y='50%25' font-size='100' fill='white' font-family='Arial' text-anchor='middle' dominant-baseline='middle'%3ES%3C/text%3E%3C/svg%3E">
-<title>Skincare Routine</title>
+<title>Skincare Routine Tracker</title>
 <style>
-    * { box-sizing: border-box; }
-    body.dark-mode { background-color: #121212; color: #f5f5f5; }
-    body.light-mode { background-color: #ffffff; color: #121212; }
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-    h1 { text-align: center; padding: 10px; font-size: 1.6em; background-color: #1E1E1E; color: #f5f5f5; margin: 0; }
-    body.light-mode h1 { background-color: #f0f0f0; color: #121212; }
-    .nav-link { text-align: center; margin: 10px; }
-    .nav-link a { color: #00bcd4; text-decoration: none; font-size: 1em; cursor: pointer; }
-    .nav-link a:hover { text-decoration: underline; }
-    .button-container { display: flex; justify-content: center; gap: 8px; margin: 10px auto; flex-wrap: wrap; padding: 0 10px; }
-    .mode-toggle, .expand-toggle, .install-btn { background-color: #1E1E1E; color: #f5f5f5; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 0.9em; }
-    body.light-mode .mode-toggle, body.light-mode .expand-toggle, body.light-mode .install-btn { background-color: #f0f0f0; color: #121212; border: 1px solid #ccc; }
-    .install-btn { background-color: #00796B; color: white; }
-    body.light-mode .install-btn { background-color: #00796B; color: white; border: none; }
-    .install-btn.hidden { display: none; }
-    .day-section { border-bottom: 1px solid #333; padding-top: 8px; }
-    body.light-mode .day-section { border-bottom: 1px solid #ddd; }
-    .day-header { padding: 10px; font-size: 1.2em; background-color: #1E1E1E; cursor: pointer; color: #f5f5f5; margin: 0; user-select: none; }
-    body.light-mode .day-header { background-color: #f0f0f0; color: #121212; }
-    .day-header:active { opacity: 0.8; }
-    .routine-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 10px; background-color: #2C2C2C; }
-    body.light-mode .routine-content { background-color: #fafafa; }
-    .routine-content.open { padding: 10px; max-height: 2000px; }
-    .routine-heading { font-size: 1.1em; font-weight: bold; margin-bottom: 8px; padding: 5px; border-radius: 4px; }
-    .am-heading { background-color: #00796B; color: #fff; }
-    .pm-heading { background-color: #512DA8; color: #fff; margin-top: 10px; }
-    .step-block { border-bottom: 1px solid #444; padding-bottom: 6px; margin-bottom: 6px; }
-    body.light-mode .step-block { border-bottom: 1px solid #ccc; }
-    .step-block:last-child { border-bottom: none; }
-    .step-title { font-weight: bold; margin-bottom: 2px; }
-    .step-desc { font-size: 0.85em; color: #ccc; }
-    body.light-mode .step-desc { color: #555; }
-    .notes { padding: 10px; font-size: 0.85em; background-color: #1E1E1E; margin: 8px 0; color: #f5f5f5; }
-    body.light-mode .notes { background-color: #f0f0f0; color: #121212; border: 1px solid #ddd; }
-    .notes ul { margin: 5px 0; padding-left: 20px; }
-    .toggle-icon { float: right; }
-    .back-to-top { text-align: center; margin: 15px; }
-    .back-to-top a { color: #00bcd4; text-decoration: none; font-size: 1em; cursor: pointer; }
-    
-    /* Table Styles */
-    table { width: 100%; border-collapse: collapse; font-size: 0.9em; margin-top: 15px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    body.light-mode th, body.light-mode td { border: 1px solid #ddd; }
-    th { background-color: #00796B; color: #fff; font-weight: bold; }
-    tr:nth-child(even) { background-color: #2C2C2C; }
-    body.light-mode tr:nth-child(even) { background-color: #f2f2f2; }
-    tbody tr:hover { background-color: #333; }
-    body.light-mode tbody tr:hover { background-color: #e8e8e8; }
-    
-    /* Page container */
-    #app-container { min-height: 100vh; }
+* { box-sizing: border-box; }
+body.dark-mode { background-color: #121212; color: #f5f5f5; }
+body.light-mode { background-color: #ffffff; color: #121212; }
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+h1 { text-align: center; padding: 10px; font-size: 1.6em; background-color: #1E1E1E; color: #f5f5f5; margin: 0; }
+body.light-mode h1 { background-color: #f0f0f0; color: #121212; }
+.nav-link { text-align: center; margin: 10px; }
+.nav-link a { color: #00bcd4; text-decoration: none; font-size: 1em; cursor: pointer; }
+.button-container { display: flex; justify-content: center; gap: 8px; margin: 10px auto; flex-wrap: wrap; padding: 0 10px; }
+.mode-toggle, .expand-toggle { background-color: #1E1E1E; color: #f5f5f5; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 0.9em; }
+body.light-mode .mode-toggle, body.light-mode .expand-toggle { background-color: #f0f0f0; color: #121212; border: 1px solid #ccc; }
+.day-section { border-bottom: 1px solid #333; padding-top: 8px; }
+body.light-mode .day-section { border-bottom: 1px solid #ddd; }
+.day-header { padding: 10px; font-size: 1.2em; background-color: #1E1E1E; cursor: pointer; color: #f5f5f5; margin: 0; user-select: none; }
+body.light-mode .day-header { background-color: #f0f0f0; color: #121212; }
+.routine-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 10px; background-color: #2C2C2C; }
+body.light-mode .routine-content { background-color: #fafafa; }
+.routine-content.open { padding: 10px; max-height: 3000px; }
+.routine-heading { font-size: 1.1em; font-weight: bold; margin-bottom: 8px; padding: 5px; border-radius: 4px; }
+.am-heading { background-color: #00796B; color: #fff; }
+.pm-heading { background-color: #512DA8; color: #fff; margin-top: 10px; }
+.step-block { border-bottom: 1px solid #444; padding-bottom: 6px; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: start; }
+body.light-mode .step-block { border-bottom: 1px solid #ccc; }
+.step-content { flex: 1; }
+.step-title { font-weight: bold; margin-bottom: 2px; }
+.step-desc { font-size: 0.85em; color: #ccc; margin-bottom: 3px; }
+body.light-mode .step-desc { color: #555; }
+.tracking-row { display: flex; gap: 4px; align-items: center; margin-top: 3px; }
+.tracking-inline { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 0.75em; color: #888; white-space: nowrap; padding-top: 2px; min-width: 50px; }
+body.light-mode .tracking-inline { color: #666; }
+.day-checkbox { width: 20px; height: 20px; cursor: pointer; border: 1.5px solid #555; border-radius: 3px; background: transparent; position: relative; flex-shrink: 0; margin: 0 auto; }
+body.light-mode .day-checkbox { border-color: #999; }
+.day-checkbox.checked { background: #00796B; border-color: #00796B; }
+.day-checkbox.checked::after { content: '✓'; color: white; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 13px; font-weight: bold; }
+.notes { padding: 10px; font-size: 0.85em; background-color: #1E1E1E; margin: 8px 0; color: #f5f5f5; }
+body.light-mode .notes { background-color: #f0f0f0; color: #121212; border: 1px solid #ddd; }
+.notes ul { margin: 5px 0; padding-left: 20px; }
+.toggle-icon { float: right; }
+.back-to-top { text-align: center; margin: 15px; }
+.back-to-top a { color: #00bcd4; text-decoration: none; cursor: pointer; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9em; margin-top: 15px; }
+th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+body.light-mode th, body.light-mode td { border: 1px solid #ddd; }
+th { background-color: #00796B; color: #fff; font-weight: bold; }
+tr:nth-child(even) { background-color: #2C2C2C; }
+body.light-mode tr:nth-child(even) { background-color: #f2f2f2; }
+
 </style>
 </head>
 <body class='dark-mode'>
-<div id='app-container'></div>
-
+<div id='app'></div>
 <script>
-// App Data Store
-const APP = {
-    currentView: 'routine',
-    theme: localStorage.getItem('theme') || 'dark',
-    deferredPrompt: null,
-    
-    pages: {
-        routine: `
-            <div id='top'></div>
-            <h1>Skincare Routine</h1>
-            <div class='nav-link'><a onclick='APP.switchView("table")'>Go to Table View</a></div>
-            <div class='button-container'>
-                <button class='mode-toggle' onclick='APP.toggleTheme()'>Switch to Light Mode</button>
-                <button class='expand-toggle' onclick='APP.toggleAll()'>Expand All</button>
-                <button class='install-btn hidden' id='installBtn' onclick='APP.install()'>Install App</button>
-            </div>
-            <div class='day-section'><div class='day-header' onclick='APP.toggleDay(this)'>Monday <span class='toggle-icon'>+</span></div><div class='routine-content'><div class='routine-heading am-heading'>AM Routine</div><div class='step-block'><div class='step-title'>Cleanser (Salicylic Acid)</div><div class='step-desc'>Wash-off after 30–60 sec</div></div><div class='step-block'><div class='step-title'>Niacinamide + Zinc Booster (opt)</div><div class='step-desc'>Leave-on, wait 1–2 min</div></div><div class='step-block'><div class='step-title'>Effaclar Duo+ SPF30</div><div class='step-desc'>Apply last in AM for UV protection</div></div><div class='routine-heading pm-heading'>PM Routine</div><div class='step-block'><div class='step-title'>Cleanser</div><div class='step-desc'>Wash-off 30–60 sec</div></div><div class='step-block'><div class='step-title'>2% BHA Toner</div><div class='step-desc'>Leave-on, wait 5–10 min for exfoliant penetration</div></div><div class='step-block'><div class='step-title'>Salicylic Acid + Cica Booster (opt)</div><div class='step-desc'>Leave-on, wait 2–3 min</div></div><div class='step-block'><div class='step-title'>Moisturiser</div><div class='step-desc'>Leave-on overnight</div></div></div></div>
-            <div class='day-section'><div class='day-header' onclick='APP.toggleDay(this)'>Tuesday <span class='toggle-icon'>+</span></div><div class='routine-content'><div class='routine-heading am-heading'>AM Routine</div><div class='step-block'><div class='step-title'>Cleanser (Salicylic Acid)</div><div class='step-desc'>Wash-off after 30–60 sec</div></div><div class='step-block'><div class='step-title'>Niacinamide + Zinc Booster (opt)</div><div class='step-desc'>Leave-on, wait 1–2 min</div></div><div class='step-block'><div class='step-title'>Effaclar Duo+ SPF30</div><div class='step-desc'>Apply last in AM for UV protection</div></div><div class='routine-heading pm-heading'>PM Routine</div><div class='step-block'><div class='step-title'>Cleanser</div><div class='step-desc'>Wash-off 30–60 sec</div></div><div class='step-block'><div class='step-title'>Wait</div><div class='step-desc'>10–20 min (skin fully dry before retinoid to reduce irritation)</div></div><div class='step-block'><div class='step-title'>Differin (Adapalene 0.1%)</div><div class='step-desc'>Leave-on, wait 5–10 min</div></div><div class='step-block'><div class='step-title'>Moisturiser</div><div class='step-desc'>Leave-on overnight</div></div></div></div>
-            <div class='day-section'><div class='day-header' onclick='APP.toggleDay(this)'>Wednesday <span class='toggle-icon'>+</span></div><div class='routine-content'><div class='routine-heading am-heading'>AM Routine</div><div class='step-block'><div class='step-title'>Cleanser (Salicylic Acid)</div><div class='step-desc'>Wash-off after 30–60 sec</div></div><div class='step-block'><div class='step-title'>Niacinamide + Zinc Booster (opt)</div><div class='step-desc'>Leave-on, wait 1–2 min</div></div><div class='step-block'><div class='step-title'>Effaclar Duo+ SPF30</div><div class='step-desc'>Apply last in AM for UV protection</div></div><div class='routine-heading pm-heading'>PM Routine</div><div class='step-block'><div class='step-title'>Cleanser</div><div class='step-desc'>Wash-off 30–60 sec</div></div><div class='step-block'><div class='step-title'>Clay Mask</div><div class='step-desc'>Leave 5–10 min, wash off (do not exceed 10 min)</div></div><div class='step-block'><div class='step-title'>Moisturiser</div><div class='step-desc'>Leave-on overnight</div></div></div></div>
-            <div class='day-section'><div class='day-header' onclick='APP.toggleDay(this)'>Thursday <span class='toggle-icon'>+</span></div><div class='routine-content'><div class='routine-heading am-heading'>AM Routine</div><div class='step-block'><div class='step-title'>Cleanser (Salicylic Acid)</div><div class='step-desc'>Wash-off after 30–60 sec</div></div><div class='step-block'><div class='step-title'>Niacinamide + Zinc Booster (opt)</div><div class='step-desc'>Leave-on, wait 1–2 min</div></div><div class='step-block'><div class='step-title'>Effaclar Duo+ SPF30</div><div class='step-desc'>Apply last in AM for UV protection</div></div><div class='routine-heading pm-heading'>PM Routine</div><div class='step-block'><div class='step-title'>Cleanser</div><div class='step-desc'>Wash-off 30–60 sec</div></div><div class='step-block'><div class='step-title'>Wait</div><div class='step-desc'>10–20 min (skin fully dry before retinoid)</div></div><div class='step-block'><div class='step-title'>Differin (Adapalene 0.1%)</div><div class='step-desc'>Leave-on, wait 5–10 min</div></div><div class='step-block'><div class='step-title'>Moisturiser</div><div class='step-desc'>Leave-on overnight</div></div></div></div>
-            <div class='day-section'><div class='day-header' onclick='APP.toggleDay(this)'>Friday <span class='toggle-icon'>+</span></div><div class='routine-content'><div class='routine-heading am-heading'>AM Routine</div><div class='step-block'><div class='step-title'>Cleanser (Salicylic Acid)</div><div class='step-desc'>Wash-off after 30–60 sec</div></div><div class='step-block'><div class='step-title'>Niacinamide + Zinc Booster (opt)</div><div class='step-desc'>Leave-on, wait 1–2 min</div></div><div class='step-block'><div class='step-title'>Effaclar Duo+ SPF30</div><div class='step-desc'>Apply last in AM for UV protection</div></div><div class='routine-heading pm-heading'>PM Routine</div><div class='step-block'><div class='step-title'>Cleanser</div><div class='step-desc'>Wash-off 30–60 sec</div></div><div class='step-block'><div class='step-title'>2% BHA Toner</div><div class='step-desc'>Leave-on, wait 5–10 min for exfoliant penetration</div></div><div class='step-block'><div class='step-title'>Salicylic Acid + Cica Booster (opt)</div><div class='step-desc'>Leave-on, wait 2–3 min</div></div><div class='step-block'><div class='step-title'>Moisturiser</div><div class='step-desc'>Leave-on overnight</div></div></div></div>
-            <div class='day-section'><div class='day-header' onclick='APP.toggleDay(this)'>Saturday <span class='toggle-icon'>+</span></div><div class='routine-content'><div class='routine-heading am-heading'>AM Routine</div><div class='step-block'><div class='step-title'>Cleanser (Salicylic Acid)</div><div class='step-desc'>Wash-off after 30–60 sec</div></div><div class='step-block'><div class='step-title'>Niacinamide + Zinc Booster (opt)</div><div class='step-desc'>Leave-on, wait 1–2 min</div></div><div class='step-block'><div class='step-title'>Effaclar Duo+ SPF30</div><div class='step-desc'>Apply last in AM for UV protection</div></div><div class='routine-heading pm-heading'>PM Routine</div><div class='step-block'><div class='step-title'>Cleanser</div><div class='step-desc'>Wash-off 30–60 sec</div></div><div class='step-block'><div class='step-title'>Wait</div><div class='step-desc'>10–20 min (skin fully dry before retinoid)</div></div><div class='step-block'><div class='step-title'>Differin (Adapalene 0.1%)</div><div class='step-desc'>Leave-on, wait 5–10 min</div></div><div class='step-block'><div class='step-title'>Moisturiser</div><div class='step-desc'>Leave-on overnight</div></div></div></div>
-            <div class='day-section'><div class='day-header' onclick='APP.toggleDay(this)'>Sunday <span class='toggle-icon'>+</span></div><div class='routine-content'><div class='routine-heading am-heading'>AM Routine</div><div class='step-block'><div class='step-title'>Cleanser (Salicylic Acid)</div><div class='step-desc'>Wash-off after 30–60 sec</div></div><div class='step-block'><div class='step-title'>Niacinamide + Zinc Booster (opt)</div><div class='step-desc'>Leave-on, wait 1–2 min</div></div><div class='step-block'><div class='step-title'>Effaclar Duo+ SPF30</div><div class='step-desc'>Apply last in AM for UV protection</div></div><div class='routine-heading pm-heading'>PM Routine</div><div class='step-block'><div class='step-title'>Cleanser</div><div class='step-desc'>Wash-off 30–60 sec</div></div><div class='step-block'><div class='step-title'>2% BHA Toner</div><div class='step-desc'>Leave-on, wait 5–10 min for exfoliant penetration</div></div><div class='step-block'><div class='step-title'>Salicylic Acid + Cica Booster (opt)</div><div class='step-desc'>Leave-on, wait 2–3 min</div></div><div class='step-block'><div class='step-title'>Moisturiser</div><div class='step-desc'>Leave-on overnight</div></div></div></div>
-            <div class='notes'>
-                <strong>Notes:</strong>
-                <ul>
-                    <li>Wait 5–10 min after toner: Allows exfoliant to penetrate and prevents layering conflicts.</li>
-                    <li>Wait 10–20 min before retinoid: Ensures skin is fully dry, reducing irritation and improving absorption.</li>
-                    <li>SPF every morning: Protects against UV damage and irritation when using actives.</li>
-                </ul>
-            </div>
-            <div class='back-to-top'><a onclick='APP.scrollToTop()'>Back to Top</a></div>
-        `,
-        
-        table: `
-            <div id='top'></div>
-            <h1>Skincare Routine Table</h1>
-            <div class='nav-link'><a onclick='APP.switchView("routine")'>Go to Routine View</a></div>
-            <div class='button-container'>
-                <button class='mode-toggle' onclick='APP.toggleTheme()'>Switch to Light Mode</button>
-                <button class='install-btn hidden' id='installBtn' onclick='APP.install()'>Install App</button>
-            </div>
-            <table>
-            <thead><tr><th>Day</th><th>AM</th><th>PM</th></tr></thead>
-            <tbody>
-            <tr><td><strong>Monday</strong></td><td>Salicylic Acid Cleanser, Niacinamide + Zinc Booster, Effaclar Duo+ SPF30</td><td>Salicylic Acid Cleanser, 2% BHA Toner, Salicylic Acid + Cica Booster, Moisturiser</td></tr>
-            <tr><td><strong>Tuesday</strong></td><td>Salicylic Acid Cleanser, Niacinamide + Zinc Booster, Effaclar Duo+ SPF30</td><td>Salicylic Acid Cleanser, Wait 10–20 min, Differin (Adapalene 0.1%), Moisturiser</td></tr>
-            <tr><td><strong>Wednesday</strong></td><td>Salicylic Acid Cleanser, Niacinamide + Zinc Booster, Effaclar Duo+ SPF30</td><td>Salicylic Acid Cleanser, Clay Mask, Moisturiser</td></tr>
-            <tr><td><strong>Thursday</strong></td><td>Salicylic Acid Cleanser, Niacinamide + Zinc Booster, Effaclar Duo+ SPF30</td><td>Salicylic Acid Cleanser, Wait 10–20 min, Differin (Adapalene 0.1%), Moisturiser</td></tr>
-            <tr><td><strong>Friday</strong></td><td>Salicylic Acid Cleanser, Niacinamide + Zinc Booster, Effaclar Duo+ SPF30</td><td>Salicylic Acid Cleanser, 2% BHA Toner, Salicylic Acid + Cica Booster, Moisturiser</td></tr>
-            <tr><td><strong>Saturday</strong></td><td>Salicylic Acid Cleanser, Niacinamide + Zinc Booster, Effaclar Duo+ SPF30</td><td>Salicylic Acid Cleanser, Wait 10–20 min, Differin (Adapalene 0.1%), Moisturiser</td></tr>
-            <tr><td><strong>Sunday</strong></td><td>Salicylic Acid Cleanser, Niacinamide + Zinc Booster, Effaclar Duo+ SPF30</td><td>Salicylic Acid Cleanser, 2% BHA Toner, Salicylic Acid + Cica Booster, Moisturiser</td></tr>
-            </tbody>
-            </table>
-            <div class='back-to-top'><a onclick='APP.scrollToTop()'>Back to Top</a></div>
-        `
-    },
-    
-    // Initialize app
-    init() {
-        this.setupManifest();
-        this.setupServiceWorker();
-        this.setupInstallPrompt();
-        this.applyTheme();
-        this.render();
-    },
-    
-    // Setup inline manifest
-    setupManifest() {
-        const manifestData = {
-            name: "Skincare Routine Tracker",
-            short_name: "Skincare",
-            description: "Weekly skincare routine tracker with AM and PM schedules",
-            start_url: "./",
-            display: "standalone",
-            background_color: "#121212",
-            theme_color: "#00796B",
-            orientation: "portrait",
-            icons: [
-                {
-                    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192'%3E%3Crect width='192' height='192' fill='%2300796B'/%3E%3Ctext x='50%25' y='50%25' font-size='100' fill='white' font-family='Arial' text-anchor='middle' dominant-baseline='middle'%3ES%3C/text%3E%3C/svg%3E",
-                    sizes: "192x192",
-                    type: "image/svg+xml",
-                    purpose: "any maskable"
-                },
-                {
-                    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512'%3E%3Crect width='512' height='512' fill='%2300796B'/%3E%3Ctext x='50%25' y='50%25' font-size='300' fill='white' font-family='Arial' text-anchor='middle' dominant-baseline='middle'%3ES%3C/text%3E%3C/svg%3E",
-                    sizes: "512x512",
-                    type: "image/svg+xml",
-                    purpose: "any maskable"
-                }
-            ]
-        };
-        
-        const manifestJSON = JSON.stringify(manifestData);
-        const manifestBlob = new Blob([manifestJSON], { type: 'application/json' });
-        const manifestURL = URL.createObjectURL(manifestBlob);
-        document.getElementById('manifest-placeholder').href = manifestURL;
-    },
-    
-    // Setup service worker
-    setupServiceWorker() {
-        if ('serviceWorker' in navigator) {
-            const swCode = `
-                const CACHE = 'skincare-v1';
-                self.addEventListener('install', e => {
-                    self.skipWaiting();
-                });
-                self.addEventListener('activate', e => {
-                    self.clients.claim();
-                });
-                self.addEventListener('fetch', e => {
-                    e.respondWith(
-                        caches.open(CACHE).then(cache => {
-                            return cache.match(e.request).then(response => {
-                                return response || fetch(e.request).then(fetchResponse => {
-                                    cache.put(e.request, fetchResponse.clone());
-                                    return fetchResponse;
-                                });
-                            });
-                        })
-                    );
-                });
-            `;
-            const blob = new Blob([swCode], { type: 'application/javascript' });
-            const swURL = URL.createObjectURL(blob);
-            navigator.serviceWorker.register(swURL)
-                .then(() => console.log('SW registered'))
-                .catch(err => console.log('SW error:', err));
-        }
-    },
-    
-    // Setup install prompt
-    setupInstallPrompt() {
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            this.deferredPrompt = e;
-            const btn = document.getElementById('installBtn');
-            if (btn) btn.classList.remove('hidden');
-        });
-        
-        window.addEventListener('appinstalled', () => {
-            this.deferredPrompt = null;
-            const btn = document.getElementById('installBtn');
-            if (btn) btn.classList.add('hidden');
-        });
-    },
-    
-    // Install app
-    install() {
-        if (this.deferredPrompt) {
-            this.deferredPrompt.prompt();
-            this.deferredPrompt.userChoice.then((choice) => {
-                if (choice.outcome === 'accepted') {
-                    const btn = document.getElementById('installBtn');
-                    if (btn) btn.classList.add('hidden');
-                }
-                this.deferredPrompt = null;
-            });
-        }
-    },
-    
-    // Switch between views
-    switchView(view) {
-        this.currentView = view;
-        this.render();
-        this.scrollToTop();
-    },
-    
-    // Render current view
-    render() {
-        const container = document.getElementById('app-container');
-        container.innerHTML = this.pages[this.currentView];
-        this.applyTheme();
-        
-        // Show install button if available
-        if (this.deferredPrompt) {
-            const btn = document.getElementById('installBtn');
-            if (btn) btn.classList.remove('hidden');
-        }
-    },
-    
-    // Toggle theme
-    toggleTheme() {
-        this.theme = this.theme === 'dark' ? 'light' : 'dark';
-        localStorage.setItem('theme', this.theme);
-        this.applyTheme();
-    },
-    
-    // Apply theme
-    applyTheme() {
-        document.body.className = this.theme + '-mode';
-        const btn = document.querySelector('.mode-toggle');
-        if (btn) {
-            btn.textContent = this.theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode';
-        }
-    },
-    
-    // Toggle individual day
-    toggleDay(header) {
-        const content = header.nextElementSibling;
-        const icon = header.querySelector('.toggle-icon');
-        if (content.classList.contains('open')) {
-            content.classList.remove('open');
-            icon.textContent = '+';
-        } else {
-            content.classList.add('open');
-            icon.textContent = '-';
-        }
-    },
-    
-    // Toggle all days
-    toggleAll() {
-        const contents = document.querySelectorAll('.routine-content');
-        const icons = document.querySelectorAll('.toggle-icon');
-        const button = document.querySelector('.expand-toggle');
-        const expand = button.textContent.includes('Expand');
-        
-        contents.forEach((content, i) => {
-            if (expand) {
-                content.classList.add('open');
-                if (icons[i]) icons[i].textContent = '-';
-            } else {
-                content.classList.remove('open');
-                if (icons[i]) icons[i].textContent = '+';
-            }
-        });
-        
-        button.textContent = expand ? 'Collapse All' : 'Expand All';
-    },
-    
-    // Scroll to top
-    scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+const T={
+  getData(){const d=localStorage.getItem('tracking');return d?JSON.parse(d):{}},
+  saveData(d){localStorage.setItem('tracking',JSON.stringify(d))},
+  toggle(day,step){
+    const k=`${day}-${step}`;
+    const d=this.getData();
+    d[k]=!d[k];
+    this.saveData(d);
+    A.r();
+  },
+  isChecked(day,step){
+    const d=this.getData();
+    return!!d[`${day}-${step}`];
+  }
 };
 
-// Initialize app when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => APP.init());
-} else {
-    APP.init();
-}
+const A={v:'routine',t:localStorage.getItem('theme')||'dark',
+  renderTracking(day,step){
+    const checked=T.isChecked(day,step)?'checked':'';
+    return `<span class="tracking-inline"><div class="day-checkbox ${checked}" onclick="T.toggle('${day}','${step}')"></div>Done</span>`;
+  },
+  p:{routine(){
+    const days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+    const routines={
+      Monday:{am:[['Cleanser (Salicylic Acid)','Wash-off after 30–60 sec','cleanser-am'],['Niacinamide + Zinc','Leave-on, wait 1–2 min','niacinamide'],['Effaclar Duo+ SPF30','','spf']],pm:[['Cleanser','Wash-off 30–60 sec','cleanser-pm'],['2% BHA Toner','Leave-on, wait 5–10 min','toner'],['Salicylic Acid + Cica','Leave-on, wait 2–3 min','cica'],['Moisturiser','Leave-on overnight','moisturiser']]},
+      Tuesday:{am:[['Cleanser (Salicylic Acid)','Wash-off after 30–60 sec','cleanser-am'],['Niacinamide + Zinc','Leave-on, wait 1–2 min','niacinamide'],['Effaclar Duo+ SPF30','','spf']],pm:[['Cleanser','Wash-off 30–60 sec','cleanser-pm'],['Wait','10–20 min (skin fully dry)','wait'],['Differin 0.1%','Leave-on, wait 5–10 min','differin'],['Moisturiser','Leave-on overnight','moisturiser']]},
+      Wednesday:{am:[['Cleanser (Salicylic Acid)','Wash-off after 30–60 sec','cleanser-am'],['Niacinamide + Zinc','Leave-on, wait 1–2 min','niacinamide'],['Effaclar Duo+ SPF30','','spf']],pm:[['Cleanser','Wash-off 30–60 sec','cleanser-pm'],['Clay Mask','Leave 5–10 min, wash off','mask'],['Moisturiser','Leave-on overnight','moisturiser']]},
+      Thursday:{am:[['Cleanser (Salicylic Acid)','Wash-off after 30–60 sec','cleanser-am'],['Niacinamide + Zinc','Leave-on, wait 1–2 min','niacinamide'],['Effaclar Duo+ SPF30','','spf']],pm:[['Cleanser','Wash-off 30–60 sec','cleanser-pm'],['Wait','10–20 min (skin fully dry)','wait'],['Differin 0.1%','Leave-on, wait 5–10 min','differin'],['Moisturiser','Leave-on overnight','moisturiser']]},
+      Friday:{am:[['Cleanser (Salicylic Acid)','Wash-off after 30–60 sec','cleanser-am'],['Niacinamide + Zinc','Leave-on, wait 1–2 min','niacinamide'],['Effaclar Duo+ SPF30','','spf']],pm:[['Cleanser','Wash-off 30–60 sec','cleanser-pm'],['2% BHA Toner','Leave-on, wait 5–10 min','toner'],['Salicylic Acid + Cica','Leave-on, wait 2–3 min','cica'],['Moisturiser','Leave-on overnight','moisturiser']]},
+      Saturday:{am:[['Cleanser (Salicylic Acid)','Wash-off after 30–60 sec','cleanser-am'],['Niacinamide + Zinc','Leave-on, wait 1–2 min','niacinamide'],['Effaclar Duo+ SPF30','','spf']],pm:[['Cleanser','Wash-off 30–60 sec','cleanser-pm'],['Wait','10–20 min (skin fully dry)','wait'],['Differin 0.1%','Leave-on, wait 5–10 min','differin'],['Moisturiser','Leave-on overnight','moisturiser']]},
+      Sunday:{am:[['Cleanser (Salicylic Acid)','Wash-off after 30–60 sec','cleanser-am'],['Niacinamide + Zinc','Leave-on, wait 1–2 min','niacinamide'],['Effaclar Duo+ SPF30','','spf']],pm:[['Cleanser','Wash-off 30–60 sec','cleanser-pm'],['2% BHA Toner','Leave-on, wait 5–10 min','toner'],['Salicylic Acid + Cica','Leave-on, wait 2–3 min','cica'],['Moisturiser','Leave-on overnight','moisturiser']]}
+    };
+    let html='<h1>Skincare Routine Tracker</h1><div class="nav-link"><a onclick="A.s(\'table\')">Table View</a></div><div class="button-container"><button class="mode-toggle" onclick="A.tt()">Light Mode</button><button class="expand-toggle" onclick="A.ta()">Expand All</button></div>';
+    days.forEach(day=>{
+      html+=`<div class="day-section"><div class="day-header" onclick="A.td(this)">${day} <span class="toggle-icon">+</span></div><div class="routine-content">`;
+      html+='<div class="routine-heading am-heading">AM</div>';
+      routines[day].am.forEach(([title,desc,id])=>{
+        html+=`<div class="step-block"><div class="step-content"><div class="step-title">${title}</div>`;
+        if(desc)html+=`<div class="step-desc">${desc}</div>`;
+        html+='</div>';
+        if(id)html+=A.renderTracking(day,id);
+        html+='</div>';
+      });
+      html+='<div class="routine-heading pm-heading">PM</div>';
+      routines[day].pm.forEach(([title,desc,id])=>{
+        html+=`<div class="step-block"><div class="step-content"><div class="step-title">${title}</div>`;
+        if(desc)html+=`<div class="step-desc">${desc}</div>`;
+        html+='</div>';
+        if(id)html+=A.renderTracking(day,id);
+        html+='</div>';
+      });
+      html+='</div></div>';
+    });
+    html+='<div class="notes"><strong>Notes:</strong><ul><li>Wait 5–10 min after toner for proper absorption</li><li>Wait 10–20 min before retinoid to reduce irritation</li><li>SPF every morning protects against UV damage</li></ul></div><div class="back-to-top"><a onclick="scrollTo(0,0)">↑ Top</a></div>';
+    return html;
+  },
+  table(){
+    return`<h1>Skincare Table</h1><div class='nav-link'><a onclick='A.s("routine")'>Routine View</a></div><div class='button-container'><button class='mode-toggle' onclick='A.tt()'>Light Mode</button></div><table><thead><tr><th>Day</th><th>AM</th><th>PM</th></tr></thead><tbody><tr><td>Mon</td><td>Cleanser, Niacinamide, SPF30</td><td>Cleanser, BHA, Cica, Moisturiser</td></tr><tr><td>Tue</td><td>Cleanser, Niacinamide, SPF30</td><td>Cleanser, Wait, Differin, Moisturiser</td></tr><tr><td>Wed</td><td>Cleanser, Niacinamide, SPF30</td><td>Cleanser, Clay Mask, Moisturiser</td></tr><tr><td>Thu</td><td>Cleanser, Niacinamide, SPF30</td><td>Cleanser, Wait, Differin, Moisturiser</td></tr><tr><td>Fri</td><td>Cleanser, Niacinamide, SPF30</td><td>Cleanser, BHA, Cica, Moisturiser</td></tr><tr><td>Sat</td><td>Cleanser, Niacinamide, SPF30</td><td>Cleanser, Wait, Differin, Moisturiser</td></tr><tr><td>Sun</td><td>Cleanser, Niacinamide, SPF30</td><td>Cleanser, BHA, Cica, Moisturiser</td></tr></tbody></table><div class='back-to-top'><a onclick='scrollTo(0,0)'>↑ Top</a></div>`
+  }},
+  s(v){this.v=v;this.r();scrollTo(0,0)},
+  r(){document.getElementById('app').innerHTML=this.p[this.v]();this.at()},
+  tt(){this.t=this.t==='dark'?'light':'dark';localStorage.setItem('theme',this.t);this.at()},
+  at(){document.body.className=this.t+'-mode';const b=document.querySelector('.mode-toggle');if(b)b.textContent=this.t==='dark'?'Light Mode':'Dark Mode'},
+  td(h){const c=h.nextElementSibling,i=h.querySelector('.toggle-icon');if(c.classList.contains('open')){c.classList.remove('open');i.textContent='+'}else{c.classList.add('open');i.textContent='-'}},
+  ta(){const cs=document.querySelectorAll('.routine-content'),is=document.querySelectorAll('.toggle-icon'),b=document.querySelector('.expand-toggle'),e=b.textContent.includes('Expand');cs.forEach((c,i)=>{if(e){c.classList.add('open');if(is[i])is[i].textContent='-'}else{c.classList.remove('open');if(is[i])is[i].textContent='+'}});b.textContent=e?'Collapse All':'Expand All'}
+};
+A.r();A.at();
 </script>
 </body>
 </html>
