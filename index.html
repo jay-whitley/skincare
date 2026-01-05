@@ -61,12 +61,16 @@ body.light-mode tr:nth-child(even) { background-color: #f2f2f2; }
 const T={
   getData(){const d=localStorage.getItem('tracking');return d?JSON.parse(d):{}},
   saveData(d){localStorage.setItem('tracking',JSON.stringify(d))},
-  toggle(day,step){
+  toggle(day,step,element){
     const k=`${day}-${step}`;
     const d=this.getData();
     d[k]=!d[k];
     this.saveData(d);
-    A.r();
+    if(d[k]){
+      element.classList.add('checked');
+    }else{
+      element.classList.remove('checked');
+    }
   },
   isChecked(day,step){
     const d=this.getData();
@@ -77,7 +81,7 @@ const T={
 const A={v:'routine',t:localStorage.getItem('theme')||'dark',
   renderTracking(day,step){
     const checked=T.isChecked(day,step)?'checked':'';
-    return `<span class="tracking-inline"><div class="day-checkbox ${checked}" onclick="T.toggle('${day}','${step}')"></div>Done</span>`;
+    return `<span class="tracking-inline"><div class="day-checkbox ${checked}" onclick="T.toggle('${day}','${step}',this)"></div>Done</span>`;
   },
   p:{routine(){
     const days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
